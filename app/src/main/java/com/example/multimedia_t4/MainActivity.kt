@@ -1,5 +1,6 @@
 package com.example.multimedia_t4
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,24 +18,50 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.botonMas).setOnClickListener {
-            sumarYRestar(it)
+            metodoSumar(it)
+        }
+        findViewById<Button>(R.id.botonMenos).setOnClickListener {
+            metodoRestar(it)
         }
     }
 
-    private fun sumarYRestar(view: View) {
-        val editText = findViewById<EditText>(R.id.numPorUsuario)
-        val editarNum = findViewById<TextView>(R.id.numPorDefecto)
+    @SuppressLint("SetTextI18n")
+    private fun metodoSumar(view: View) {
+        val numUsuario = findViewById<EditText>(R.id.numPorUsuario)
+        var numPantalla = findViewById<TextView>(R.id.numPorDefecto)
 
-        editarNum.text = "funciona"
-        editText.visibility=View.GONE
-        view.visibility=View.GONE
+        val nro1 = numUsuario.text.toString().toInt()
+        val nro2 = numPantalla.text.toString().toInt()
+        val suma = nro1 + nro2
+        numPantalla.text = "$suma"
+    }
 
-        editarNum.visibility=View.VISIBLE
+    private fun metodoRestar(view: View) {
+        val numUsuario = findViewById<EditText>(R.id.numPorUsuario)
+        val numPantalla = findViewById<TextView>(R.id.numPorDefecto)
 
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken,0)
-
+        val nro1 = numUsuario.text.toString().toInt()
+        val nro2 = numPantalla.text.toString().toInt()
+        val resta = nro2 - nro1
+        if (resta < 0) {
+            numPantalla.text = "0"
+        } else {
+            numPantalla.text = "$resta"
+        }
     }
 
 }
 
+
+
+//TODO intento 1
+/*
+numPantalla.text = "funciona"
+numUsuario.visibility=View.GONE
+view.visibility=View.GONE
+
+numPantalla.visibility=View.VISIBLE
+
+val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+imm.hideSoftInputFromWindow(view.windowToken,0)
+*/
