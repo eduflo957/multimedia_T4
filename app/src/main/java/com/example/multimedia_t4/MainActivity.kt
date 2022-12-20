@@ -20,24 +20,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val cambColBotMas = findViewById<Button>(R.id.botonMas)
-        val cambColBotMenos = findViewById<Button>(R.id.botonMenos)
-        findViewById<EditText>(R.id.numPorUsuario).setOnFocusChangeListener { view: View, bool: Boolean ->
-            if (bool.equals(false)) {
-                cambColBotMas.setBackgroundColor(0xFF000000.toInt())
-                cambColBotMenos.setBackgroundColor(0xFF000000.toInt())
-            } else {
-                cambColBotMas.setBackgroundColor(0xFF000000.toInt())
-                cambColBotMenos.setBackgroundColor(0xFF000000.toInt())
-            }
-        }
-
         findViewById<Button>(R.id.botonMas).setOnClickListener {
             metodoSumar(it)
         }
         findViewById<Button>(R.id.botonMenos).setOnClickListener {
             metodoRestar(it)
         }
+
+        var cambColBotMas = findViewById<Button>(R.id.botonMas)
+        var cambColBotMenos = findViewById<Button>(R.id.botonMenos)
+        findViewById<EditText>(R.id.numPorUsuario).setOnFocusChangeListener { view: View, bool: Boolean ->
+            if (bool) {
+                cambColBotMas.setBackgroundColor(0xFFBB86FC.toInt())
+                cambColBotMenos.setBackgroundColor(0xFFBB86FC.toInt())
+            } else {
+                cambColBotMas.setBackgroundColor(0xFF03DAC5.toInt())
+                cambColBotMenos.setBackgroundColor(0xFF03DAC5.toInt())
+            }
+        }
+
+
     }
 
 
