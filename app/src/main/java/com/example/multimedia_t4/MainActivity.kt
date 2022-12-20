@@ -2,6 +2,7 @@ package com.example.multimedia_t4
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val cambColBotMas = findViewById<Button>(R.id.botonMas)
+        val cambColBotMenos = findViewById<Button>(R.id.botonMenos)
+        findViewById<EditText>(R.id.numPorUsuario).setOnFocusChangeListener { view: View, bool: Boolean ->
+            if (bool.equals(false)) {
+                cambColBotMas.setBackgroundColor(0xFF000000.toInt())
+                cambColBotMenos.setBackgroundColor(0xFF000000.toInt())
+            } else {
+                cambColBotMas.setBackgroundColor(0xFF000000.toInt())
+                cambColBotMenos.setBackgroundColor(0xFF000000.toInt())
+            }
+        }
+
         findViewById<Button>(R.id.botonMas).setOnClickListener {
             metodoSumar(it)
         }
@@ -24,6 +39,8 @@ class MainActivity : AppCompatActivity() {
             metodoRestar(it)
         }
     }
+
+
 
     @SuppressLint("SetTextI18n")
     private fun metodoSumar(view: View) {
@@ -49,9 +66,7 @@ class MainActivity : AppCompatActivity() {
             numPantalla.text = "$resta"
         }
     }
-
 }
-
 
 
 //TODO intento 1
